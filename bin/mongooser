@@ -5,7 +5,7 @@ var mongoose = require('mongoose')
 var Schema = mongoose.Schema
 var repl = require('repl')
 var path = require('path')
-var debug = require('debug')('mongoose-repl')
+var debug = require('debug')('mongooser')
 
 program.version(require('../package').version)
   .option('-c --config  <path>', 'configuration path')
