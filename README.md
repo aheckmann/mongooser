@@ -61,7 +61,7 @@ See the [test configuration]() for another example.
 
 When `mongooser` starts it exposes your `Models` globally:
 
-![](http://dl.dropbox.com/u/11198966/Screen%20Shot%202012-05-22%20at%207.25.19%20AM.png)
+![](http://dl.dropbox.com/u/11198966/mongooser-startup.png)
 
 You can query in traditional `Mongoose` fashion:
 
