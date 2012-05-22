@@ -25,9 +25,9 @@ Your configuration should be a module. The module should be formatted as follows
 
 ```js
 exports.connect = 'mongodb://localhost:port/dbname'
-exports.Users = 'path/to/your/schema'
-exports.Views = 'path/to/your/model'
-exports.Checkings = [ schema, options ]
+exports.Users = 'path/to/a/schema'
+exports.Views = 'path/to/a/model'
+exports.Checkins = [ schema, options ]
 ```
 
 ### connection string _(required)_
