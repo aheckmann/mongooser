@@ -65,11 +65,7 @@ When `mongooser` starts it exposes your `Models` globally:
 
 You can query in traditional `Mongoose` fashion:
 
-```
-mongooser> Book.where('title').equals('How to make paper airplanes').exec(print)
-mongooser> ...
-mongooser> null { title: 'A Tale of Two Cities', _id: 4fbb25a950badf0000000001 }
-```
+![](http://dl.dropbox.com/u/11198966/mongooser-query.png)
 
 A few observations:
 
