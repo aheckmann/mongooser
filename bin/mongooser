@@ -1,0 +1,143 @@
+#!/usr/bin/env node
+
+var program = new (require('commander')).Command('mongooser')
+var mongoose = require('mongoose')
+var Schema = mongoose.Schema
+var repl = require('repl')
+var path = require('path')
+var debug = require('debug')('mongoose-repl')
+
+program.version(require('../package').version)
+  .option('-c --config  <path>', 'configuration path')
+  .option('-d --dir <path>', 'path to directory of schemas', true)
+  .parse(process.argv);
+
+if (!process.argv.length || !program.config) {
+  console.error('missing configuration');
+  process.stdout.write(program.helpInformation())
+  process.exit(1)
+}
+
+//    x json config
+//    x exported schemas
+//    x exported models
+// TODO
+//  - work with a ~/.mongooserc file
+
+var configpath = path.resolve(program.config);
+var config;
+try {
+  config = require(configpath);
+} catch (err) {
+  console.error('could not load configuration: `%s`', program.config)
+  console.error()
+  console.error(err.stack)
+  process.exit(1)
+}
+
+debug('configured with: %j', config)
+
+var context = {}
+var connect = config.connect;
+var conn = context.connection = mongoose.createConnection(connect);
+
+conn.on('error', function (err) {
+  console.error('connection error', err)
+  process.exit(1);
+});
+
+conn.once('open', startRepl);
+
+function startRepl () {
+  delete config.connect
+  context.schemas = {}
+  var schemas = Object.keys(config)
+    , len = schemas.length
+    , models = []
+    , schema
+    , name
+    , s
+
+  while (len--) {
+    name = schemas[len]
+    schema = config[name]
+    if ('string' == typeof schema) {
+      var mod = require(path.resolve(path.dirname(configpath), schema));
+      if (mod.findOne) {
+        // model
+        context[name] = conn.model(mod.modelName)
+      } else {
+        // schema
+        s = fix(mod)
+        context.schemas[name] = s
+        context[name] = conn.model(name, s)
+      }
+    } else {
+      schema = fix(schema)
+      s = new Schema(schema[0], schema[1] || {})
+      context.schemas[name] = s;
+      context[name] = conn.model(name, s)
+    }
+    models.push(name)
+  }
+
+  var term = repl.start('mongoose> ')
+
+  function print () {
+    console.log.apply(console, arguments)
+    if (arguments[1]) term.context._ = arguments[1]
+    term.displayPrompt()
+  }
+
+  context.print = context.p = print
+  context.mongoose = mongoose
+  context.models = models
+
+  for (var x in context)
+    term.context[x] = context[x]
+
+  console.log('\033[90mconnection opened to \033[32m%s\033[0m', connect)
+  term.displayPrompt()
+  console.log('\033[90mloaded models:\033[0m \033[36m%s\033[0m', models.join(', '))
+  term.displayPrompt()
+}
+
+function fix (schema) {
+  if (mongoose.version[0] > 2) return schema;
+  function f (o) {
+    var keys = Object.keys(o)
+      , len = keys.length;
+    while (len--) {
+      key = keys[len];
+      switch (o[key]) {
+        case 'string':
+          o[key] = String;
+          continue;
+        case 'number':
+          o[key] = Number;
+          continue;
+        case 'buffer':
+          o[key] = Buffer;
+          continue;
+        case 'array':
+          o[key] = Array;
+          continue;
+        case 'mixed':
+          o[key] = {};
+          continue;
+        default:
+          if (o[key]) {
+            if ('Object' == o[key].constructor.name) {
+              f(o[key]);
+            } else if (Array.isArray(o[key])) {
+              o[key].forEach(f);
+            }
+          }
+          continue;
+      }
+    }
+  }
+  f(schema);
+  return schema;
+}
+

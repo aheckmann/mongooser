@@ -1,0 +1,22 @@
+{
+  "author": "Aaron Heckmann <aaron.heckmann+github@gmail.com>",
+  "name": "mongooser",
+  "description": "Mongoose REPL",
+  "version": "0.0.1",
+  "scripts": {
+    "test": "make test"
+  },
+  "dependencies": {
+    "mongoose":"2.6.4",
+    "commander": "0.6.0",
+    "debug": "0.7.0"
+  },
+  "devDependencies": {
+    "mocha": "*"
+  },
+  "optionalDependencies": {},
+  "engines": {
+    "node": ">= 0.4.2"
+  },
+  "bin": { "mongooser": "./bin/mongooser" }
+}
