@@ -57,56 +57,56 @@ describe('mongooser', function(){
 
     it('Book should be a function', function (done) {
       test('typeof Book', function (err, out) {
-        assert.equal("'function'\nmongoose> ", out);
+        assert.equal("'function'\nmongooser> ", out);
         done();
       });
     });
 
     it('Book should be a model', function (done) {
       test('typeof Book', function (err, out) {
-        assert.equal("'function'\nmongoose> ", out);
+        assert.equal("'function'\nmongooser> ", out);
         done();
       });
     });
 
     it('print should be a function', function (done) {
       test('typeof print', function (err, out) {
-        assert.equal("'function'\nmongoose> ", out);
+        assert.equal("'function'\nmongooser> ", out);
         done();
       });
     });
 
     it('connection should be a object', function (done) {
       test('typeof connection', function (err, out) {
-        assert.equal("'object'\nmongoose> ", out);
+        assert.equal("'object'\nmongooser> ", out);
         done();
       });
     });
 
     it('schemas should be an object', function (done) {
       test('typeof schemas', function (err, out) {
-        assert.equal("'object'\nmongoose> ", out);
+        assert.equal("'object'\nmongooser> ", out);
         done();
       });
     });
 
     it('mongoose should be an object', function (done) {
       test('typeof mongoose', function (err, out) {
-        assert.equal("'object'\nmongoose> ", out);
+        assert.equal("'object'\nmongooser> ", out);
         done();
       });
     });
 
     it('mongoose.Mongoose should be a function', function (done) {
       test('typeof mongoose.Mongoose', function (err, out) {
-        assert.equal("'function'\nmongoose> ", out);
+        assert.equal("'function'\nmongooser> ", out);
         done();
       });
     });
 
     it('should remove all Books', function(done){
       test('Book.remove(function(){Book.count(print)})', function (err, out) {
-        assert.ok(/null 0\nmongoose> $/.test(out));
+        assert.ok(/null 0\nmongooser> $/.test(out));
         done();
       });
     })
