@@ -11,6 +11,7 @@ npm install mongooser -g
 
 ## usage
 
+```
 mongooser [options]
 
   Options:
@@ -18,6 +19,7 @@ mongooser [options]
     -h, --help           output usage information
     -V, --version        output the version number
     -c --config <path>   configuration path
+```
 
 Your configuration should be a module. The module should be formatted as follows:
 
