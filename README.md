@@ -43,13 +43,9 @@ There are three approaches to expose your models to the REPL:
 
 ```
 exports.NameOfYourModel = 'path/to/your/schema'
-
 // or
-
 exports.NameOfYourModel = 'path/to/your/model'
-
 // or
-
 exports.NameOfYourModel = [ new Schema(..), schemaOptions ]
 ```
 
