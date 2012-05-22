@@ -8,8 +8,7 @@ var path = require('path')
 var debug = require('debug')('mongooser')
 
 program.version(require('../package').version)
-  .option('-c --config  <path>', 'configuration path')
-  .option('-d --dir <path>', 'path to directory of schemas', true)
+  .option('-c --config <path>', 'configuration path')
   .parse(process.argv);
 
 if (!process.argv.length || !program.config) {
@@ -18,9 +17,6 @@ if (!process.argv.length || !program.config) {
   process.exit(1)
 }
 
-//    x json config
-//    x exported schemas
-//    x exported models
 // TODO
 //  - work with a ~/.mongooserc file
 
