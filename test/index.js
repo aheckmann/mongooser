@@ -17,7 +17,6 @@ describe('mongooser', function(){
       err += data;
     });
     repl.on('exit', function (code) {
-      assert.equal('missing configuration\n', err);
       assert.equal(1, code)
       assert.ok(/Usage: mongooser \[options\]/.test(buf));
       done()

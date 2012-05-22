@@ -11,8 +11,7 @@ program.version(require('../package').version)
   .option('-c --config <path>', 'configuration path')
   .parse(process.argv);
 
-if (!process.argv.length || !program.config) {
-  console.error('missing configuration');
+if (3 > process.argv.length) {
   process.stdout.write(program.helpInformation())
   process.exit(1)
 }
