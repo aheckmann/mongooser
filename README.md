@@ -67,16 +67,17 @@ A few observations:
 
   - `print`: is a global function available which prints query results to the repl nicely.
   - `p`: is an alias of `print`
-  - executing a query dumps the query object to the repl first (represented above with ...)
+  - executing a query dumps the query object to the repl first
   - the `print` helper displays returned arguments in order
+  - `print` mimics nodejs repl behavior by assigning the 2nd argument passed to the global `_`.
 
 ## globals
 
- - `connection`: your db connection object
- - `models`: array of each loaded Model name
- - `schemas`: your schemas included in configuration
- - `mongoose`: the `mongoose` module
- - Models: each model created from your configuration
+  - `connection`: your db connection object
+  - `models`: array of each loaded Model name
+  - `schemas`: your schemas included in configuration
+  - `mongoose`: the `mongoose` module
+  - Models: each model created from your configuration
 
 ## tests
 
