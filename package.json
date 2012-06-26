@@ -7,7 +7,7 @@
     "test": "make test"
   },
   "dependencies": {
-    "mongoose":"2.6.4",
+    "mongoose":"2.6.8",
     "commander": "0.6.0",
     "debug": "0.7.0"
   },
