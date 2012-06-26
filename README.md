@@ -11,6 +11,7 @@ npm install mongooser -g
 
 ## usage
 
+```
 mongooser [options]
 
   Options:
@@ -18,14 +19,15 @@ mongooser [options]
     -h, --help           output usage information
     -V, --version        output the version number
     -c --config <path>   configuration path
+```
 
 Your configuration should be a module. The module should be formatted as follows:
 
 ```js
 exports.connect = 'mongodb://localhost:port/dbname'
-exports.Users = 'path/to/your/schema'
-exports.Views = 'path/to/your/model'
-exports.Checkings = [ schema, options ]
+exports.Users = 'path/to/a/schema'
+exports.Views = 'path/to/a/model'
+exports.Checkins = [ schema, options ]
 ```
 
 ### connection string _(required)_
@@ -41,13 +43,9 @@ There are three approaches to expose your models to the REPL:
 
 ```
 exports.NameOfYourModel = 'path/to/your/schema'
-
 // or
-
 exports.NameOfYourModel = 'path/to/your/model'
-
 // or
-
 exports.NameOfYourModel = [ new Schema(..), schemaOptions ]
 ```
 
@@ -59,30 +57,27 @@ See the [test configuration]() for another example.
 
 When `mongooser` starts it exposes your `Models` globally:
 
-![](http://dl.dropbox.com/u/11198966/Screen%20Shot%202012-05-22%20at%207.25.19%20AM.png)
+![](http://dl.dropbox.com/u/11198966/mongooser-startup.png)
 
 You can query in traditional `Mongoose` fashion:
 
-```
-mongooser> Book.where('title').equals('How to make paper airplanes').exec(print)
-mongooser> ...
-mongooser> null { title: 'A Tale of Two Cities', _id: 4fbb25a950badf0000000001 }
-```
+![](http://dl.dropbox.com/u/11198966/mongooser-query.png)
 
 A few observations:
 
   - `print`: is a global function available which prints query results to the repl nicely.
   - `p`: is an alias of `print`
-  - executing a query dumps the query object to the repl first (represented above with ...)
+  - executing a query dumps the query object to the repl first
   - the `print` helper displays returned arguments in order
+  - `print` mimics nodejs repl behavior by assigning the 2nd argument passed to the global `_`.
 
 ## globals
 
- - `connection`: your db connection object
- - `models`: array of each loaded Model name
- - `schemas`: your schemas included in configuration
- - `mongoose`: the `mongoose` module
- - Models: each model created from your configuration
+  - `connection`: your db connection object
+  - `models`: array of each loaded Model name
+  - `schemas`: your schemas included in configuration
+  - `mongoose`: the `mongoose` module
+  - Models: each model created from your configuration
 
 ## tests
 
