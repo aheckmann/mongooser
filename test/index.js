@@ -153,7 +153,7 @@ describe('mongooser', function(){
       });
 
       if (str && (str = str.trim())) {
-        repl.stdin.write(str);
+        repl.stdin.write(str + '\n');
       }
 
       function wait () {
