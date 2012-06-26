@@ -76,7 +76,7 @@ function startRepl () {
     models.push(name)
   }
 
-  var term = repl.start('mongooser> ')
+  var term = repl.start('mongooser> ');
 
   function print () {
     console.log.apply(console, arguments)

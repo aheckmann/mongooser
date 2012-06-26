@@ -2,7 +2,7 @@
 var cp = require('child_process')
   , spawn = cp.spawn
   , assert = require('assert')
-  , cmd = './bin/mongooser'
+  , cmd = require('path').resolve(__dirname + '/../bin/mongooser')
 
 // use mocha
 describe('mongooser', function(){
@@ -44,7 +44,7 @@ describe('mongooser', function(){
     var repl;
 
     before(function (done) {
-      repl = spawn(cmd, ['-c', 'test/test.js']);
+      repl = spawn(cmd, ['-c', __dirname + '/test.js']);
       repl.on('exit', function (a) {
         console.error('  repl is exiting: %s', a);
       });
@@ -56,6 +56,7 @@ describe('mongooser', function(){
 
     it('Book should be a function', function (done) {
       test('typeof Book', function (err, out) {
+        assert.ifError(err);
         assert.equal("'function'\nmongooser> ", out);
         done();
       });
@@ -63,6 +64,7 @@ describe('mongooser', function(){
 
     it('Book should be a model', function (done) {
       test('typeof Book', function (err, out) {
+        assert.ifError(err);
         assert.equal("'function'\nmongooser> ", out);
         done();
       });
@@ -70,6 +72,7 @@ describe('mongooser', function(){
 
     it('print should be a function', function (done) {
       test('typeof print', function (err, out) {
+        assert.ifError(err);
         assert.equal("'function'\nmongooser> ", out);
         done();
       });
@@ -77,6 +80,7 @@ describe('mongooser', function(){
 
     it('connection should be a object', function (done) {
       test('typeof connection', function (err, out) {
+        assert.ifError(err);
         assert.equal("'object'\nmongooser> ", out);
         done();
       });
@@ -84,6 +88,7 @@ describe('mongooser', function(){
 
     it('schemas should be an object', function (done) {
       test('typeof schemas', function (err, out) {
+        assert.ifError(err);
         assert.equal("'object'\nmongooser> ", out);
         done();
       });
@@ -91,6 +96,7 @@ describe('mongooser', function(){
 
     it('mongoose should be an object', function (done) {
       test('typeof mongoose', function (err, out) {
+        assert.ifError(err);
         assert.equal("'object'\nmongooser> ", out);
         done();
       });
@@ -98,6 +104,7 @@ describe('mongooser', function(){
 
     it('mongoose.Mongoose should be a function', function (done) {
       test('typeof mongoose.Mongoose', function (err, out) {
+        assert.ifError(err);
         assert.equal("'function'\nmongooser> ", out);
         done();
       });
@@ -105,6 +112,7 @@ describe('mongooser', function(){
 
     it('should remove all Books', function(done){
       test('Book.remove(function(){Book.count(print)})', function (err, out) {
+        assert.ifError(err);
         assert.ok(/null 0\nmongooser> $/.test(out));
         done();
       });
@@ -115,6 +123,7 @@ describe('mongooser', function(){
                + '  Book.findOne(print);'
                + '});'
       test(code, function(err, out){
+        assert.ifError(err);
         assert.ok(/A Tale of Two Cities', _id: /.test(out));
         done();
       });
@@ -124,6 +133,7 @@ describe('mongooser', function(){
       var code = 'Book.find().where("title").equals("A Tale of Two Cities")'
                + '.exec(print);'
       test(code, function(err, out){
+        assert.ifError(err);
         assert.ok(/{ title: 'A Tale of Two Cities', _id: /.test(out));
         done();
         finish();
