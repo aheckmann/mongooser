@@ -18,5 +18,9 @@
   "engines": {
     "node": ">= 0.4.2"
   },
-  "bin": { "mongooser": "./bin/mongooser" }
+  "bin": { "mongooser": "./bin/mongooser" },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/aheckmann/mongooser.git"
+  }
 }
