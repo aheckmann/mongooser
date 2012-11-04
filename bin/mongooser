@@ -67,7 +67,7 @@ function startRepl () {
         context.schemas[name] = s
         context[name] = conn.model(name, s)
       }
-    } else if (s instanceof mongoose.Schema) {
+    } else if (schema instanceof mongoose.Schema) {
       context.schemas[name] = schema;
       context[name] = conn.model(name, schema)
     } else {
