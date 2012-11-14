@@ -51,7 +51,7 @@ exports.NameOfYourModel = [ new Schema(..), schemaOptions ]
 
 The array approach allows us to quickly set up configuration by including the `Schema` and its options directly in the configuration file.
 
-See the [test configuration]() for another example.
+See the [test configuration](https://github.com/aheckmann/mongooser/blob/master/test/test.js) for another example.
 
 ## repl
 
@@ -70,6 +70,7 @@ A few observations:
   - executing a query dumps the query object to the repl first
   - the `print` helper displays returned arguments in order
   - `print` mimics nodejs repl behavior by assigning the 2nd argument passed to the global `_`.
+  - all queries, as with normal mongoose applications, are run asynchronously
 
 ## globals
 
@@ -77,6 +78,7 @@ A few observations:
   - `models`: array of each loaded Model name
   - `schemas`: your schemas included in configuration
   - `mongoose`: the `mongoose` module
+  - `ObjectId` the ObjectId constructor
   - Models: each model created from your configuration
 
 ## tests
