@@ -86,6 +86,7 @@ function startRepl () {
 
   context.print = context.p = print
   context.mongoose = mongoose
+  context.ObjectId = mongoose.Types.ObjectId;
   context.models = models
 
   for (var x in context)

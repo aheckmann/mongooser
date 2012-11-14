@@ -102,6 +102,14 @@ describe('mongooser', function(){
       });
     });
 
+    it('ObjectId should be global', function(done){
+      test('typeof ObjectId', function (err, out) {
+        assert.ifError(err);
+        assert.equal("'function'\nmongooser> ", out);
+        done();
+      });
+    })
+
     it('mongoose.Mongoose should be a function', function (done) {
       test('typeof mongoose.Mongoose', function (err, out) {
         assert.ifError(err);
