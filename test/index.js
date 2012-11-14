@@ -132,7 +132,7 @@ describe('mongooser', function(){
                + '});'
       test(code, function(err, out){
         assert.ifError(err);
-        assert.ok(/A Tale of Two Cities', _id: /.test(out));
+        assert.ok(/title: 'A Tale of Two Cities'/.test(out));
         done();
       });
     })
@@ -142,7 +142,7 @@ describe('mongooser', function(){
                + '.exec(print);'
       test(code, function(err, out){
         assert.ifError(err);
-        assert.ok(/{ title: 'A Tale of Two Cities', _id: /.test(out));
+        assert.ok(/title: 'A Tale of Two Cities'/.test(out));
         done();
         finish();
       });
