@@ -7,6 +7,8 @@ var repl = require('repl')
 var path = require('path')
 var debug = require('debug')('mongooser')
 
+process.title = 'mongooser';
+
 program.version(require('../package').version)
   .option('-c --config <path>', 'configuration path')
   .parse(process.argv);
