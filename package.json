@@ -2,7 +2,7 @@
   "author": "Aaron Heckmann <aaron.heckmann+github@gmail.com>",
   "name": "mongooser",
   "description": "Mongoose REPL",
-  "version": "0.0.6",
+  "version": "0.1.0",
   "scripts": {
     "test": "make test"
   },
